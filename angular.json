@@ -5,9 +5,17 @@
   "projects": {
     "front-mirador": {
       "projectType": "application",
+      "cli": {
+        "defaultCollection": "@angular/material"
+      },
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@angular/material:nav": {
+          "style": "scss",
+          "standalone": false
         }
       },
       "root": "",
@@ -32,6 +40,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -70,7 +79,10 @@
               "buildTarget": "front-mirador:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
@@ -91,6 +103,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
             "scripts": []
