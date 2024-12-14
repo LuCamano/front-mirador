@@ -9,4 +9,8 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
 
+  edificios = [
+    { nombre: 'Edificio A', direccion: 'Calle 123' },
+    { nombre: 'Edificio B', direccion: 'Calle 1234' },
+  ]
 }

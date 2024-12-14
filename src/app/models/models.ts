@@ -43,3 +43,45 @@ export interface Servicio {
   descripcion: string;
   idGasto: number;
 }
+
+export interface Empleado {
+  run: string, 
+  nombre: string, 
+  sueldoHora: number, 
+  horas: number, 
+  contacto: number, 
+  conEmergencia: number, 
+  tipo: string
+}
+
+export interface EmpleadoEdificio {
+  idEmpleadoEdificio?: number,
+  run: string, 
+  idEdificio: number, 
+  inicio: Date,
+  termino?: Date
+}
+
+export interface Persona {
+  run: string, 
+  nombre: string, 
+  apellido: string, 
+  contacto: number, 
+  conEmergencia: number
+}
+
+export interface Residente {
+  idResidente?: number,
+  run: string, 
+  idDepartamento: number, 
+  inicio: Date, 
+  termino?: Date
+}
+
+export interface Propietario {
+  idPropietario?: number,
+  run: string,
+  idDepartamento: number,
+  inicio: Date,
+  termino?: Date
+}

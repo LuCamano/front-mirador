@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,15 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss',
   standalone: false
 })
-export class AppComponent {
-  title = 'front-mirador';
+export class AppComponent implements OnInit{
+  // Inyectar las dependencias
+  private router = inject(Router);
+
+  navbar = true;
+
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      this.navbar = this.router.url !== '/login';
+    });
+  }
 }

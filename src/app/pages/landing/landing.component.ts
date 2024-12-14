@@ -9,16 +9,6 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent implements OnInit {
-// Inyectar dependencias
-  apiSvc = inject(ApiService);
 
-  edificios: Edificio[] = [];
-
-  ngOnInit(): void {
-    this.getEdificios();
-  }
-
-  getEdificios() {
-    this.apiSvc.obtenerEdificios().then( edificios => this.edificios = edificios);
-  }
+  ngOnInit() { }
 }

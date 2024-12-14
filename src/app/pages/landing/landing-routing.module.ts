@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: LandingComponent
+  },
+  {
+    path: 'edificios',
+    loadChildren: () => import('./edificios/edificios.module').then(m => m.EdificiosModule)
   }
 ];
 
