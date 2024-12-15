@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
-      this.navbar = this.router.url !== '/login';
+      this.navbar = !this.router.url.includes('/login');
     });
   }
 }
