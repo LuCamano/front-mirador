@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: EdificiosComponent
+  },
+  {
+    path: 'detalle/:id',
+    loadChildren: () => import('./detalle-edif/detalle-edif.module').then(m => m.DetalleEdifModule)
   }
 ];
 

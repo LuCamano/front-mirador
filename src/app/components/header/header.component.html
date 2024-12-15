@@ -1,8 +1,12 @@
 <mat-toolbar
     >
-    <a href="/"><img src="logo mirador.png" alt="logo"></a>
-    <button mat-button>Gastos</button>
-    <button mat-button>Edificios</button>
-    <button mat-button>Usuarios</button>
-    <button mat-icon-button style="margin-left: auto;"><mat-icon>account_circle</mat-icon></button>
+    <a routerLink="/"><img src="logo mirador.png" alt="logo"></a>
+    <button mat-button routerLink="gastos">Gastos</button>
+    <button mat-button routerLink="edificios">Edificios</button>
+    <button mat-button routerLink="usuarios">Usuarios</button>
+    <button mat-icon-button matTooltip="Cuenta" [matMenuTriggerFor]="cuentaM" style="margin-left: auto;"><mat-icon>account_circle</mat-icon></button>
 </mat-toolbar>
+<mat-menu #cuentaM="matMenu">
+    <button mat-menu-item>Perfil</button>
+    <button mat-menu-item>Cerrar sesión</button>
+</mat-menu>

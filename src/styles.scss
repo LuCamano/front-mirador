@@ -17,3 +17,16 @@ html {
         filled-container-shape: 5px
     ));
 }
+
+.container {
+    padding: 1.5cap;
+}
+
+.container-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: calc(100dvh - 64px);
+}

@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { EdificiosRoutingModule } from './edificios-routing.module';
 import { EdificiosComponent } from './edificios.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -11,6 +16,11 @@ import { EdificiosComponent } from './edificios.component';
   ],
   imports: [
     CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule,
+    MatTooltipModule,
     EdificiosRoutingModule
   ]
 })

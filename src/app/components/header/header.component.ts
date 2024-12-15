@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
 
-  edificios = [
-    { nombre: 'Edificio A', direccion: 'Calle 123' },
-    { nombre: 'Edificio B', direccion: 'Calle 1234' },
-  ]
+
 }
