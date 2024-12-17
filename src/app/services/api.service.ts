@@ -17,6 +17,12 @@ export class ApiService {
     return lastValueFrom(this.http.get<Edificio[]>(this.url + '/edificio/all'));
   }
 
+  // Crear un edificio
+  crearEdificio(edificio: Edificio) {
+    if (edificio.idEdificio) throw new Error('No se puede crear un edificio con un ID');
+    return lastValueFrom(this.http.post<Edificio>(this.url + '/edificio/create', edificio));
+  }
+
   // Método para obtener gastos
   obtenerGastos() {
     return lastValueFrom(this.http.get<Gasto[]>(this.url + '/gasto/all'));

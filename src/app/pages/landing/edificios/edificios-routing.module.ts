@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'detalle/:id',
     loadChildren: () => import('./detalle-edif/detalle-edif.module').then(m => m.DetalleEdifModule)
+  },
+  {
+    path: 'crear',
+    loadChildren: () => import('./crear-edif/crear-edif.module').then(m => m.CrearEdifModule)
   }
 ];
 

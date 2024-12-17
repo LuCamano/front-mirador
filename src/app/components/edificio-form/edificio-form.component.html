@@ -1,0 +1,21 @@
+<form [formGroup]="edificioForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" type="text" placeholder="Ingrese el nombre...">
+        <mat-hint>Nombre del edificio</mat-hint>
+        <mat-error>El nombre del edificio es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" type="text" placeholder="Ingrese la dirección...">
+        <mat-hint>Dirección del edificio</mat-hint>
+        <mat-error>La dirección del edificio es requerida</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Nro. de pisos</mat-label>
+        <input matInput formControlName="numPisos" type="number" placeholder="Ingrese la cantidad de pisos...">
+        <mat-hint>Cantidad de pisos del edificio</mat-hint>
+        <mat-error>La cantidad de pisos es requerida</mat-error>
+    </mat-form-field>
+    <button mat-flat-button [disabled]="edificioForm.invalid" type="submit">Crear</button>
+</form>
