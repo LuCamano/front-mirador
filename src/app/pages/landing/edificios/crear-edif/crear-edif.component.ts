@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Edificio } from '../../../../models/models';
+import { UtilsService } from '../../../../services/utils.service';
 
 @Component({
   selector: 'app-crear-edif',
@@ -11,5 +12,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CrearEdifComponent {
   // Inyectar dependencias
   private apiSvc = inject(ApiService);
+  private utils = inject(UtilsService);
 
+  crearEdificio = async (edificio: Edificio) => {
+    try {
+      await this.apiSvc.crearEdificio(edificio);
+      this.utils.navigateTo(['/edificios']);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

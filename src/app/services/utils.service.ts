@@ -8,8 +8,8 @@ export class UtilsService {
   // Inyectar dependencias
   private router = inject(Router);
 
-  navigateTo(route: string, extras?: NavigationExtras) {
-    this.router.navigate([route], extras);
+  navigateTo(route: string[], extras?: NavigationExtras) {
+    this.router.navigate(route, extras);
   }
 
   getQueryParams() {

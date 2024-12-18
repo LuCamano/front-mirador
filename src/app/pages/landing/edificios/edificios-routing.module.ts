@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'crear',
     loadChildren: () => import('./crear-edif/crear-edif.module').then(m => m.CrearEdifModule)
+  },
+  {
+    path: 'actualizar/:id',
+    loadChildren: () => import('./actualizar-edif/actualizar-edif.module').then(m => m.ActualizarEdifModule)
   }
 ];
 

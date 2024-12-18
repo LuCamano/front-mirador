@@ -8,43 +8,53 @@
             </div>
         </mat-card-header>
         <mat-card-content>
-            <table mat-table [dataSource]="edificios">
-                <!-- Position Column -->
-                <ng-container matColumnDef="idEdificio">
-                <th mat-header-cell *matHeaderCellDef>ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.idEdificio }}</td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                <td mat-cell *matCellDef="let element"><a [routerLink]="['detalle', element.idEdificio]">{{ element.nombre }}</a></td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="direccion">
-                <th mat-header-cell *matHeaderCellDef>Dirección</th>
-                <td mat-cell *matCellDef="let element">{{ element.direccion }}</td>
-                </ng-container>
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="numPisos">
-                <th mat-header-cell *matHeaderCellDef>Pisos</th>
-                <td mat-cell *matCellDef="let element">{{ element.numPisos }}</td>
-                </ng-container>
-
-                <tr
-                mat-header-row
-                *matHeaderRowDef="['idEdificio', 'nombre', 'direccion', 'numPisos']"
-                ></tr>
-                <tr
-                mat-row
-                *matRowDef="
-                    let row;
-                    columns: ['idEdificio', 'nombre', 'direccion', 'numPisos']
-                "
-                ></tr>
-            </table>
+            <div class="overflow-x">
+                <table mat-table [dataSource]="edificios">
+                    <!-- ID -->
+                    <ng-container matColumnDef="idEdificio">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let element">{{ element.idEdificio }}</td>
+                    </ng-container>
+    
+                    <!-- Nombre -->
+                    <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let element"><a class="name-link" [routerLink]="['detalle', element.idEdificio]">{{ element.nombre }}</a></td>
+                    </ng-container>
+    
+                    <!-- Dirección -->
+                    <ng-container matColumnDef="direccion">
+                    <th mat-header-cell *matHeaderCellDef>Dirección</th>
+                    <td mat-cell *matCellDef="let element">{{ element.direccion }}</td>
+                    </ng-container>
+    
+                    <!-- Cantidad de pisos -->
+                    <ng-container matColumnDef="numPisos">
+                    <th mat-header-cell *matHeaderCellDef>Pisos</th>
+                    <td mat-cell *matCellDef="let element">{{ element.numPisos }}</td>
+                    </ng-container>
+    
+                    <!-- Acciones -->
+                    <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button matTooltip="Editar" [routerLink]="['actualizar', element.idEdificio]"><mat-icon>edit</mat-icon></button>
+                        <!-- <button mat-icon-button matTooltip="Eliminar"><mat-icon>delete</mat-icon></button> -->
+                    </td>
+                    </ng-container>
+                    <tr
+                    mat-header-row
+                    *matHeaderRowDef="['idEdificio', 'nombre', 'direccion', 'numPisos', 'acciones']"
+                    ></tr>
+                    <tr
+                    mat-row
+                    *matRowDef="
+                        let row;
+                        columns: ['idEdificio', 'nombre', 'direccion', 'numPisos', 'acciones']
+                    "
+                    ></tr>
+                </table>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>
