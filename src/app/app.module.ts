@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from "./components/components.module";
 import { provideHttpClient } from '@angular/common/http';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { provideHttpClient } from '@angular/common/http';
     AppRoutingModule,
     ComponentsModule
 ],
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideAnimationsAsync(), provideHttpClient()],
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideAnimationsAsync(), provideHttpClient(), provideNativeDateAdapter(), { provide: MAT_DATE_LOCALE, useValue: 'es-CL' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

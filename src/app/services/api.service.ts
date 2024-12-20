@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Edificio, Gasto } from '../models/models';
+import { Departamento, Edificio, Gasto, Persona } from '../models/models';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable({
@@ -37,12 +37,33 @@ export class ApiService {
   }
 
   // Método para obtener gastos
-  obtenerGastos() {
-    return lastValueFrom(this.http.get<Gasto[]>(this.url + '/gasto/all'));
+  async obtenerGastos() {
+    const gastos = await lastValueFrom(this.http.get<Gasto[]>(this.url + '/gasto/all'));
+    gastos.map( gasto => {
+      gasto.fecha = new Date(gasto.fecha);
+    });
+    return gastos;
+  }
+
+  // Método para obtener un gasto
+  async obtenerGasto(idGasto: number) {
+    const gasto = await lastValueFrom(this.http.get<Gasto>(this.url + `/gasto/${idGasto}`));
+    gasto.fecha = new Date(gasto.fecha);
+    return gasto;
   }
 
   // Método para obtener a los inquilinos
   obtenerInquilinos() {
-    return lastValueFrom(this.http.get(this.url + '/persona/all'));
+    return lastValueFrom(this.http.get<Persona[]>(this.url + '/persona/all'));
+  }
+
+  // Método para obtener los departamentos
+  obtenerDepartamentos() {
+    return lastValueFrom(this.http.get<Departamento[]>(this.url + '/departamento/all'));
+  }
+
+  // Método para obtener un departamento
+  obtenerDepartamento(idDepartamento: number) {
+    return lastValueFrom(this.http.get<Departamento>(this.url + `/departamento/${idDepartamento}`));
   }
 }

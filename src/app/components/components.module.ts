@@ -6,10 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EdificioFormComponent } from './edificio-form/edificio-form.component';
+import { GastoFormComponent } from './gasto-form/gasto-form.component';
 
 
 
@@ -17,6 +21,7 @@ import { EdificioFormComponent } from './edificio-form/edificio-form.component';
   declarations: [
     HeaderComponent,
     EdificioFormComponent,
+    GastoFormComponent,
   ],
   imports: [
     CommonModule,
@@ -28,11 +33,15 @@ import { EdificioFormComponent } from './edificio-form/edificio-form.component';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MatMenuModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatMenuModule,
+    MatSelectModule
   ],
   exports: [
     HeaderComponent,
-    EdificioFormComponent
+    EdificioFormComponent,
+    GastoFormComponent
   ]
 })
 export class ComponentsModule { }

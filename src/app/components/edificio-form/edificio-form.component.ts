@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Edificio } from '../../models/models';
 import { ApiService } from '../../services/api.service';
 import { UtilsService } from '../../services/utils.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-edificio-form',
@@ -15,9 +16,8 @@ export class EdificioFormComponent implements OnInit {
   // Inyectar dependencias
   private api = inject(ApiService);
   private utils = inject(UtilsService);
-
-  // Callback para cuando se hace el submit
-  @Input() submitFunc!: (edif: Edificio) => void;
+  private dialogRef = inject(MatDialogRef<EdificioFormComponent>);
+  data = inject(MAT_DIALOG_DATA);
 
   @Input() idEdificio!: number;
 
@@ -31,6 +31,9 @@ export class EdificioFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if (this.data) {
+      this.idEdificio = this.data.idEdificio;
+    }
     if (this.idEdificio) {
       this.api.obtenerEdificio(this.idEdificio).then(edificio => {
         this.edificioForm.setValue({
@@ -46,12 +49,35 @@ export class EdificioFormComponent implements OnInit {
     }
   }
 
-  submit() {
+  async submit() {
     if (this.edificioForm.valid) {
       const edificio = this.edificioForm.value as Edificio;
       if (this.idEdificio) edificio.idEdificio = this.idEdificio;
       if (this.waiting) return;
-      this.submitFunc(edificio);
+      if (this.idEdificio) {
+        await this.editar(edificio);
+      } else {
+        await this.crear(edificio);
+      }
+      this.dialogRef.close();
+    }
+  }
+
+  async crear(edificio: Edificio) {
+    try {
+      await this.api.crearEdificio(edificio);
+      this.utils.navigateTo(['/edificios']);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async editar(edificio: Edificio) {
+    try {
+      await this.api.actualizarEdificio(edificio);
+      this.utils.navigateTo(['/edificios']);
+    } catch (error) {
+      console.error(error);
     }
   }
 }

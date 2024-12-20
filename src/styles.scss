@@ -14,7 +14,13 @@ html {
 
 :root {
     @include mat.button-overrides((
-        filled-container-shape: 5px
+        filled-container-shape: 5px,
+        outlined-container-shape: 5px,
+        protected-container-shape: 5px,
+        text-container-shape: 5px
+    ));
+    @include mat.dialog-overrides((
+        container-shape: 15px
     ));
 }
 

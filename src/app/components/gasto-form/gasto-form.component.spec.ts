@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrearEdifComponent } from './crear-edif.component';
+import { GastoFormComponent } from './gasto-form.component';
 
-describe('CrearEdifComponent', () => {
-  let component: CrearEdifComponent;
-  let fixture: ComponentFixture<CrearEdifComponent>;
+describe('GastoFormComponent', () => {
+  let component: GastoFormComponent;
+  let fixture: ComponentFixture<GastoFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CrearEdifComponent]
+      declarations: [GastoFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CrearEdifComponent);
+    fixture = TestBed.createComponent(GastoFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

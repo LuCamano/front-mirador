@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{idGasto ? 'Editar':'Crear'}} gasto</h2>
+<mat-dialog-content>
+    <form id="gasto-form" [formGroup]="gastoForm" (ngSubmit)="submit()">
+        <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <input matInput placeholder='ejemplo: "mantenimiento"' type="text" formControlName="tipo">
+            <mat-hint>Tipo de gasto</mat-hint>
+            <mat-error>Tipo <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Edificio</mat-label>
+            <mat-select placeholder="Elija un edificio" formControlName="edificio" (selectionChange)="filtrarDepas($event.value.idEdificio)">
+                <mat-option>--Seleccione un edificio--</mat-option>
+                <mat-option *ngFor="let edificio of edificios" [value]="edificio">
+                    {{edificio.nombre}}
+                </mat-option>
+            </mat-select>
+            <mat-hint>Edificio al que pertenece el gasto</mat-hint>
+            <mat-error>Edificio <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Departamento</mat-label>
+            <mat-select placeholder="Elija un departamento" formControlName="idDepartamento">
+                <mat-option *ngFor="let departamento of depasFiltrados" [value]="departamento.idDepartamento">
+                    {{departamento.numero}}
+                </mat-option>
+            </mat-select>
+            <mat-hint>Departamento al que pertenece el gasto</mat-hint>
+            <mat-error>Departamento <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Vencimiento del gasto" formControlName="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint>Formato: DD/MM/AAAA</mat-hint>
+            <mat-error>Fecha <strong>requerida</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Valor</mat-label>
+            <input matInput placeholder="$1.000" type="number" min="1000" step="500" pattern="/^[0-9]+$/" formControlName="valor">
+            <mat-hint>Valor del gasto</mat-hint>
+            <mat-error>Valor <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <textarea matInput placeholder="Escriba una descripción..." formControlName="descripcion"></textarea>
+            <mat-error>Se requiere una descripción</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-flat-button form="gasto-form" [disabled]="gastoForm.invalid || btnDisabled" type="submit">{{idGasto ? 'Guardar':'Crear'}}</button>
+</mat-dialog-actions>
