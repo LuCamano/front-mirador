@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
-import { Gasto } from '../../../models/models';
+import { Gasto, Departamento } from '../../../models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { GastoFormComponent } from '../../../components/gasto-form/gasto-form.component';
 
@@ -18,13 +18,20 @@ export class GastosComponent implements OnInit {
 
   gastos: Gasto[] = [];
 
+  departamentos: Departamento[] = [];
+
   ngOnInit(): void { 
+    this.getDepartamentos();
     this.getGastos();
   }
 
   // Método para obtener los gastos
   async getGastos() {
     this.gastos = await this.apiSvc.obtenerGastos();
+  }
+
+  async getDepartamentos() {
+    this.departamentos = await this.apiSvc.obtenerDepartamentos();
   }
 
   // Crear un gasto
@@ -35,5 +42,9 @@ export class GastosComponent implements OnInit {
   // Actualizar un gasto
   formularioActualizar(idGasto: number) {
     this.dialog.open(GastoFormComponent, { data: { idGasto } });
+  }
+
+  getNroDepa(idDepa: number) {
+    return this.departamentos.find(depa => depa.idDepartamento === idDepa)?.numero;
   }
 }

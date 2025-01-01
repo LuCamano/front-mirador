@@ -9,7 +9,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Edificio</mat-label>
-            <mat-select placeholder="Elija un edificio" formControlName="edificio" (selectionChange)="filtrarDepas($event.value.idEdificio)">
+            <mat-select placeholder="Elija un edificio" formControlName="edificio" (selectionChange)="$event.value ? filtrarDepas($event.value.idEdificio) : depasFiltrados = []">
                 <mat-option>--Seleccione un edificio--</mat-option>
                 <mat-option *ngFor="let edificio of edificios" [value]="edificio">
                     {{edificio.nombre}}
@@ -21,6 +21,7 @@
         <mat-form-field>
             <mat-label>Departamento</mat-label>
             <mat-select placeholder="Elija un departamento" formControlName="idDepartamento">
+                <mat-option>--Seleccione un departamento--</mat-option>
                 <mat-option *ngFor="let departamento of depasFiltrados" [value]="departamento.idDepartamento">
                     {{departamento.numero}}
                 </mat-option>
@@ -38,7 +39,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Valor</mat-label>
-            <input matInput placeholder="$1.000" type="number" min="1000" step="500" pattern="/^[0-9]+$/" formControlName="valor">
+            <input matInput placeholder="$1.000" type="number" min="1000" step="500" formControlName="valor">
             <mat-hint>Valor del gasto</mat-hint>
             <mat-error>Valor <strong>requerido</strong></mat-error>
         </mat-form-field>

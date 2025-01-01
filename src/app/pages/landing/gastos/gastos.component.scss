@@ -1,0 +1,14 @@
+#botones {
+    display: inline-flex;
+    margin-left: auto;
+    margin-bottom: calc(1rem - 1px);
+}
+
+.name-link {
+    text-decoration: none;
+    font-weight: 550;
+}
+
+.overflow-x {
+    overflow-x: auto;
+}

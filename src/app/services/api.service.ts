@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Departamento, Edificio, Gasto, Persona } from '../models/models';
 import { lastValueFrom } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,26 @@ export class ApiService {
     const gasto = await lastValueFrom(this.http.get<Gasto>(this.url + `/gasto/${idGasto}`));
     gasto.fecha = new Date(gasto.fecha);
     return gasto;
+  }
+
+  // Método para crear un gasto
+  async crearGasto(gasto: Gasto) {
+    if (gasto.idGasto) throw new Error('No se puede crear un gasto con un ID');
+    let fechaFormateada = formatDate(gasto.fecha, 'dd-MM-yyyy', 'en-US');
+    const newGasto = { ...gasto, fecha: fechaFormateada };
+    const resp = await lastValueFrom(this.http.post<Gasto>(this.url + '/gasto/create', newGasto));
+    resp.fecha = new Date(resp.fecha);
+    return resp;
+  }
+
+  // Método para actualizar un gasto
+  async actualizarGasto(gasto: Gasto) {
+    if (!gasto.idGasto) throw new Error('No se puede actualizar un gasto sin un ID');
+    const newGasto: Gasto = { ...gasto };
+    delete newGasto.idGasto;
+    const resp = await lastValueFrom(this.http.put<Gasto>(this.url + `/gasto/update/${gasto.idGasto}`, newGasto));
+    resp.fecha = new Date(resp.fecha);
+    return resp;
   }
 
   // Método para obtener a los inquilinos

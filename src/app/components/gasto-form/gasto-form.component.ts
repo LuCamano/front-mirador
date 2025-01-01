@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Departamento, Edificio } from '../../models/models';
+import { Departamento, Edificio, Gasto } from '../../models/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
@@ -25,7 +25,7 @@ export class GastoFormComponent implements OnInit {
     edificio: new FormControl<Edificio | null>(null, [Validators.required]),
     idDepartamento: new FormControl<number | null>(null, [Validators.required]),
     tipo: new FormControl('', [Validators.required]),
-    valor: new FormControl<number>(0, [Validators.required, Validators.min(1000)])
+    valor: new FormControl<number | null>(null, [Validators.required, Validators.min(1000)])
   });
 
   // Variables
@@ -71,7 +71,24 @@ export class GastoFormComponent implements OnInit {
   }
 
   async submit() {
-    this.dialogRef.close();
+    if (this.gastoForm.valid) {
+      try {
+        let values = {...this.gastoForm.value};
+        delete values.edificio;
+        const gasto = values as Gasto;
+        if (this.idGasto) gasto.idGasto = this.idGasto;
+        if (this.btnDisabled) return;
+        if (this.idGasto) {
+          await this.api.actualizarGasto(gasto);
+        } else {
+          await this.api.crearGasto(gasto);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.dialogRef.close();
+      }
+    }
   }
 
   async getDepartamentos() {

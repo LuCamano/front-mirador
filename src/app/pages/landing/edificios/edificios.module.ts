@@ -22,8 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatIconModule,
     MatTooltipModule,
-    EdificiosRoutingModule,
-    MatDialogModule
+    EdificiosRoutingModule
   ]
 })
 export class EdificiosModule { }
